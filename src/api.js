@@ -69,11 +69,16 @@ export default class Api extends React.Component {
         const fTotRew = Math.round(fRew/10000000000000000)/100;
         const aTotRew = Math.round(aRew/10000000000000)/100000;
         var total = 0;
+        var stakeStr = "";
         for (let i = 0; i<output.length; i++){
             var initWithdrawn = output[i][4];
             var stakeAmt = output[i][2];
             if(!initWithdrawn){
                 total += parseInt(stakeAmt);
+                if(stakeStr != ""){
+                    stakeStr = stakeStr + "\n";
+                }
+                stakeStr = stakeStr + "Binance\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " busd";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const val = Math.round(total/10000000000000000)/100; //convert from wei
@@ -84,6 +89,10 @@ export default class Api extends React.Component {
             var stakeAmt = pOut[i][2];
             if(!initWithdrawn){
                 totP += parseInt(stakeAmt);
+                if(stakeStr != ""){
+                    stakeStr = stakeStr + "\n";
+                }
+                stakeStr = stakeStr + "Polygon\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wMatic";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valP = Math.round(totP/10000000000000000)/100; //convert from wei
@@ -94,6 +103,10 @@ export default class Api extends React.Component {
             var stakeAmt = fOut[i][2];
             if(!initWithdrawn){
                 totF += parseInt(stakeAmt);
+                if(stakeStr != ""){
+                    stakeStr = stakeStr + "\n";
+                }
+                stakeStr = stakeStr + "Fantom\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wFtm";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valF = Math.round(totF/10000000000000000)/100; //convert from wei
@@ -104,6 +117,10 @@ export default class Api extends React.Component {
             var stakeAmt = aOut[i][2];
             if(!initWithdrawn){
                 totA += parseInt(stakeAmt);
+                if(stakeStr != ""){
+                    stakeStr = stakeStr + "\n";
+                }
+                stakeStr = stakeStr + "Arbitrum\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wEth";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valA = Math.round(totA/100000000000000)/10000; //convert from wei
@@ -134,6 +151,7 @@ export default class Api extends React.Component {
         this.setState({ tRefFUSD: Math.round(refF*fPrice/100000000000000000)/100, loading: false});
         this.setState({ tRefA: Math.round(refA/10000000000000000)/100, loading: false});
         this.setState({ tRefAUSD: Math.round(refA*aPrice/10000000000000000)/100, loading: false});
+        this.setState({ Stakes: stakeStr, loading: false});
                   
     }
 
@@ -212,8 +230,9 @@ export default class Api extends React.Component {
                     </tr>
                 </table>
                 <br></br>
-                <br></br>
-
+                <h4>All Stakes for {this.state.useAddr}</h4>
+                <h5>Chain         Keyy  Stake amount</h5>
+                <div>{this.state.Stakes}</div>
             </div>
             
         );
