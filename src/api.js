@@ -73,12 +73,15 @@ export default class Api extends React.Component {
         for (let i = 0; i<output.length; i++){
             var initWithdrawn = output[i][4];
             var stakeAmt = output[i][2];
+            var daysSince = Math.floor((Date.now()/1000 - parseInt(output[i][1]))/86400);
+            var tax = (daysSince>49)?0:(daysSince>39)?2:(daysSince>29)?4:(daysSince>19)?6:(daysSince>9)?8:10;
             if(!initWithdrawn){
                 total += parseInt(stakeAmt);
                 if(stakeStr != ""){
                     stakeStr = stakeStr + "\n";
                 }
-                stakeStr = stakeStr + "  Binance\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " busd";
+                var stakeRound = Math.round(stakeAmt/1e16)/100
+                stakeStr = stakeStr + "  Binance\t\t" + i.toString() + "\t" + stakeRound.toString() + " busd" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const val = Math.round(total/10000000000000000)/100; //convert from wei
@@ -87,12 +90,15 @@ export default class Api extends React.Component {
         for (let i = 0; i<pOut.length; i++){
             var initWithdrawn = pOut[i][4];
             var stakeAmt = pOut[i][2];
+            var daysSince = Math.floor((Date.now()/1000 - parseInt(pOut[i][1]))/86400);
+            var tax = (daysSince>49)?0:(daysSince>39)?2:(daysSince>29)?4:(daysSince>19)?6:(daysSince>9)?8:10;
             if(!initWithdrawn){
                 totP += parseInt(stakeAmt);
                 if(stakeStr != ""){
                     stakeStr = stakeStr + "\n";
                 }
-                stakeStr = stakeStr + "  Polygon\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wMatic";
+                var stakeRound = Math.round(stakeAmt/1e16)/100
+                stakeStr = stakeStr + "  Polygon\t\t" + i.toString() + "\t" + stakeRound.toString() + " wMatic" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valP = Math.round(totP/10000000000000000)/100; //convert from wei
@@ -101,12 +107,15 @@ export default class Api extends React.Component {
         for (let i = 0; i<fOut.length; i++){
             var initWithdrawn = fOut[i][4];
             var stakeAmt = fOut[i][2];
+            var daysSince = Math.floor((Date.now()/1000 - parseInt(fOut[i][1]))/86400);
+            var tax = (daysSince>49)?0:(daysSince>39)?2:(daysSince>29)?4:(daysSince>19)?6:(daysSince>9)?8:10;
             if(!initWithdrawn){
                 totF += parseInt(stakeAmt);
                 if(stakeStr != ""){
                     stakeStr = stakeStr + "\n";
                 }
-                stakeStr = stakeStr + "  Fantom\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wFtm";
+                var stakeRound = Math.round(stakeAmt/1e16)/100
+                stakeStr = stakeStr + "  Fantom\t\t" + i.toString() + "\t" + stakeRound.toString() + " wFtm" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valF = Math.round(totF/10000000000000000)/100; //convert from wei
@@ -115,12 +124,15 @@ export default class Api extends React.Component {
         for (let i = 0; i<aOut.length; i++){
             var initWithdrawn = aOut[i][4];
             var stakeAmt = aOut[i][2];
+            var daysSince = Math.floor((Date.now()/1000 - parseInt(aOut[i][1]))/86400);
+            var tax = (daysSince>49)?0:(daysSince>39)?2:(daysSince>29)?4:(daysSince>19)?6:(daysSince>9)?8:10;
             if(!initWithdrawn){
                 totA += parseInt(stakeAmt);
                 if(stakeStr != ""){
                     stakeStr = stakeStr + "\n";
                 }
-                stakeStr = stakeStr + "Arbitrum\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wEth";
+                var stakeRound = Math.round(stakeAmt/1e14)/10000
+                stakeStr = stakeStr + "Arbitrum\t\t" + i.toString() + "\t" + stakeRound.toString() + " wEth" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valA = Math.round(totA/100000000000000)/10000; //convert from wei
@@ -200,21 +212,21 @@ export default class Api extends React.Component {
                     </tr>
                     <tr>
                         <td>Polygon</td>
-                        <td>{this.state.tStakeP} $wMatic ({this.state.tStakePUSD} $USD)</td>
-                        <td>{this.state.tRewP} $wMatic ({this.state.tRewPUSD} $USD)</td>
-                        <td>{this.state.tRefP} $wMatic ({this.state.tRefPUSD} $USD)</td>
+                        <td>{this.state.tStakeP} $wMatic <br/>({this.state.tStakePUSD} $USD)</td>
+                        <td>{this.state.tRewP} $wMatic <br/>({this.state.tRewPUSD} $USD)</td>
+                        <td>{this.state.tRefP} $wMatic <br/>({this.state.tRefPUSD} $USD)</td>
                     </tr>
                     <tr>
                         <td>Fantom</td>
-                        <td>{this.state.tStakeF} $wFtm ({this.state.tStakeFUSD} $USD)</td>
-                        <td>{this.state.tRewF} $wFtm ({this.state.tRewFUSD} $USD)</td>
-                        <td>{this.state.tRefF} $wFtm ({this.state.tRefFUSD} $USD)</td>
+                        <td>{this.state.tStakeF} $wFtm <br/>({this.state.tStakeFUSD} $USD)</td>
+                        <td>{this.state.tRewF} $wFtm <br/>({this.state.tRewFUSD} $USD)</td>
+                        <td>{this.state.tRefF} $wFtm <br/>({this.state.tRefFUSD} $USD)</td>
                     </tr>
                     <tr>
                         <td>Arbitrum</td>
-                        <td>{this.state.tStakeA} $wEth ({this.state.tStakeAUSD} $USD)</td>
-                        <td>{this.state.tRewA} $wEth ({this.state.tRewAUSD} $USD)</td>
-                        <td>{this.state.tRefA} $wEth ({this.state.tRefAUSD} $USD)</td>
+                        <td>{this.state.tStakeA} $wEth <br/>({this.state.tStakeAUSD} $USD)</td>
+                        <td>{this.state.tRewA} $wEth <br/>({this.state.tRewAUSD} $USD)</td>
+                        <td>{this.state.tRefA} $wEth <br/>({this.state.tRefAUSD} $USD)</td>
                     </tr>
                     <tr>
                         <th>TOTAL</th>
@@ -230,8 +242,8 @@ export default class Api extends React.Component {
                     </tr>
                 </table>
                 <br></br>
-                <h4>All Stakes for {this.state.useAddr}</h4>
-                <h5>     Chain          Keyy    Stake amount</h5>
+                <h4>All Stakes for <br/>{this.state.useAddr}</h4>
+                <h5>     Chain          Keyy     Stake amt           Days    Tax</h5>
                 <div>{this.state.Stakes}</div>
             </div>
             
