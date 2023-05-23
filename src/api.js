@@ -81,7 +81,7 @@ export default class Api extends React.Component {
                     stakeStr = stakeStr + "\n";
                 }
                 var stakeRound = Math.round(stakeAmt/1e16)/100
-                stakeStr = stakeStr + "  Binance\t\t" + i.toString() + "\t" + stakeRound.toString() + " busd" + "\t" + daysSince + "\t" + tax + "%";
+                stakeStr = stakeStr + "  Binance\t" + i.toString() + "\t" + stakeRound.toString() + " busd" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const val = Math.round(total/10000000000000000)/100; //convert from wei
@@ -98,7 +98,7 @@ export default class Api extends React.Component {
                     stakeStr = stakeStr + "\n";
                 }
                 var stakeRound = Math.round(stakeAmt/1e16)/100
-                stakeStr = stakeStr + "  Polygon\t\t" + i.toString() + "\t" + stakeRound.toString() + " wMatic" + "\t" + daysSince + "\t" + tax + "%";
+                stakeStr = stakeStr + "  Polygon\t" + i.toString() + "\t" + stakeRound.toString() + " wMtc" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valP = Math.round(totP/10000000000000000)/100; //convert from wei
@@ -115,7 +115,7 @@ export default class Api extends React.Component {
                     stakeStr = stakeStr + "\n";
                 }
                 var stakeRound = Math.round(stakeAmt/1e16)/100
-                stakeStr = stakeStr + "  Fantom\t\t" + i.toString() + "\t" + stakeRound.toString() + " wFtm" + "\t" + daysSince + "\t" + tax + "%";
+                stakeStr = stakeStr + "  Fantom\t" + i.toString() + "\t" + stakeRound.toString() + " wFtm" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valF = Math.round(totF/10000000000000000)/100; //convert from wei
@@ -132,7 +132,7 @@ export default class Api extends React.Component {
                     stakeStr = stakeStr + "\n";
                 }
                 var stakeRound = Math.round(stakeAmt/1e14)/10000
-                stakeStr = stakeStr + "Arbitrum\t\t" + i.toString() + "\t" + stakeRound.toString() + " wEth" + "\t" + daysSince + "\t" + tax + "%";
+                stakeStr = stakeStr + "Arbitrum\t" + i.toString() + "\t" + stakeRound.toString() + " wEth" + "\t" + daysSince + "\t" + tax + "%";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valA = Math.round(totA/100000000000000)/10000; //convert from wei
@@ -212,9 +212,9 @@ export default class Api extends React.Component {
                     </tr>
                     <tr>
                         <td>Polygon</td>
-                        <td>{this.state.tStakeP} $wMatic <br/>({this.state.tStakePUSD} $USD)</td>
-                        <td>{this.state.tRewP} $wMatic <br/>({this.state.tRewPUSD} $USD)</td>
-                        <td>{this.state.tRefP} $wMatic <br/>({this.state.tRefPUSD} $USD)</td>
+                        <td>{this.state.tStakeP} $wMtc <br/>({this.state.tStakePUSD} $USD)</td>
+                        <td>{this.state.tRewP} $wMtc <br/>({this.state.tRewPUSD} $USD)</td>
+                        <td>{this.state.tRefP} $wMtc <br/>({this.state.tRefPUSD} $USD)</td>
                     </tr>
                     <tr>
                         <td>Fantom</td>
@@ -243,7 +243,7 @@ export default class Api extends React.Component {
                 </table>
                 <br></br>
                 <h4>All Stakes for <br/>{this.state.useAddr}</h4>
-                <h5>     Chain          Keyy     Stake amt           Days    Tax</h5>
+                <h5>    Chain       Keyy     Stake amt        Days    Tax</h5>
                 <div>{this.state.Stakes}</div>
             </div>
             
