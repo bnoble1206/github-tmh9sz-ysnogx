@@ -78,7 +78,7 @@ export default class Api extends React.Component {
                 if(stakeStr != ""){
                     stakeStr = stakeStr + "\n";
                 }
-                stakeStr = stakeStr + "Binance\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " busd";
+                stakeStr = stakeStr + "  Binance\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " busd";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const val = Math.round(total/10000000000000000)/100; //convert from wei
@@ -92,7 +92,7 @@ export default class Api extends React.Component {
                 if(stakeStr != ""){
                     stakeStr = stakeStr + "\n";
                 }
-                stakeStr = stakeStr + "Polygon\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wMatic";
+                stakeStr = stakeStr + "  Polygon\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wMatic";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valP = Math.round(totP/10000000000000000)/100; //convert from wei
@@ -106,7 +106,7 @@ export default class Api extends React.Component {
                 if(stakeStr != ""){
                     stakeStr = stakeStr + "\n";
                 }
-                stakeStr = stakeStr + "Fantom\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wFtm";
+                stakeStr = stakeStr + "  Fantom\t" + i.toString() + "\t" + (stakeAmt/1e18).toString() + " wFtm";
             }
         }// loop through all stakes and if not withdrawn, add to staked total
         const valF = Math.round(totF/10000000000000000)/100; //convert from wei
@@ -231,7 +231,7 @@ export default class Api extends React.Component {
                 </table>
                 <br></br>
                 <h4>All Stakes for {this.state.useAddr}</h4>
-                <h5>Chain         Keyy  Stake amount</h5>
+                <h5>     Chain          Keyy    Stake amount</h5>
                 <div>{this.state.Stakes}</div>
             </div>
             
