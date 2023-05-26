@@ -18,7 +18,7 @@ export default class Api extends React.Component {
 
         const RPC_BSC = 'https://bsc-dataseed1.binance.org/'; //binance smart chain
         const web3 = new Web3(RPC_BSC);
-        const RPC_POL = 'https://polygon.llamarpc.com';
+        const RPC_POL = 'https://rpc-mainnet.matic.quiknode.pro';
         const web3p = new Web3(RPC_POL);
         const RPC_FTM = 'https://fantom.publicnode.com';
         const web3f = new Web3(RPC_FTM);
